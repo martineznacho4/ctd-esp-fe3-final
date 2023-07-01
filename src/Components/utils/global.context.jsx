@@ -1,15 +1,38 @@
-import { createContext } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
-export const initialState = {theme: "", data: []}
+export const initialState = {
+  theme: "light",
+  favs: JSON.parse(localStorage.getItem("favs")) || [],
+  dentists: [],
+};
 
-export const ContextGlobal = createContext(undefined);
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_FAV":
+      return { ...state, favs: [...state.favs, action.payload] };
+    case "SET_DENTISTS":
+      return { ...state, dentists: action.payload };
+    case "TOGGLE_THEME":
+      return { ...state, theme: state.theme === "light" ? "dark" : "light" };
+    case "SET_NOTIFICATION":
+      return { ...state, notification: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const GlobalContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("favs", JSON.stringify(state.favs));
+  }, [state.favs]);
 
   return (
-    <ContextGlobal.Provider value={{}}>
+    <GlobalContext.Provider value={{ state, dispatch }}>
       {children}
-    </ContextGlobal.Provider>
+    </GlobalContext.Provider>
   );
 };

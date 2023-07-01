@@ -11,37 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.favButton{
-  background-color: rgba(136, 136, 136, 0.116);
+
+.favButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(110, 109, 109, 0.116);
   padding: 10px;
-  border: none;
+  border: 1px solid transparent;
   width: 100%;
   cursor: pointer;
 }
 
-h1{
+.favButton:hover {
+  border-color: rgb(59, 59, 202);
+  background-color: #5aadff;
+}
+
+h1 {
   text-align: center;
 }
 
-nav{
+nav {
   display: flex;
-  width: 80vw;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem;
+  max-width: 100vw;
+  box-sizing: border-box;
+  background-color: #f0efef;
 }
 
-a{
+a {
   color: #000;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
 }
-a:hover{
+
+a:hover {
   color: rgb(136, 136, 136);
-} 
+}
 
 footer {
-  display: flex;
   justify-content: center;
   text-align: center;
   padding: 2rem;
@@ -52,16 +64,43 @@ footer {
   margin-top: 2rem;
 }
 
-footer > img{
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+footer>img {
   width: 200px;
   margin: 0;
 }
-footer > p{
+
+footer>p {
   margin: 0;
   padding-top: 0.7rem;
 }
 
-form{
+
+.footer.light .social-icon {
+  color: #000000;
+}
+
+.footer.dark .social-icon {
+  color: #ffffff;
+}
+
+.logo img {
+  max-width: 150px;
+  max-height: 50px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -70,7 +109,7 @@ form{
   margin: 0 auto;
 }
 
-.card{
+.card {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -78,32 +117,48 @@ form{
   width: 200px;
   padding: 0.5rem 0.5rem 0 0.5rem;
   border: 0.5px solid rgb(136, 136, 136);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
-.card:hover{
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card:hover {
   border: 0.5px solid rgb(206, 217, 142);
+  transform: translateY(-5px);
 }
 
-.card-grid{
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1rem;
-  width: 90vw;
-  height: auto;
-  flex-wrap: wrap;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(300px, auto);
+  grid-gap: 1rem;
   margin: 0 auto;
+  max-width: 1000px;
+  justify-content: cen;
+}
+
+.star-icon {
+  color: gold;
+  border: 2px solid yellow;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 table {
- border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    display: table;
-    border: 1px solid #ccc;
-
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  display: table;
+  border: 1px solid #ccc
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -113,10 +168,110 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.dark{
-  background-color: #12121296;
+.dark {
+  background-color: rgb(136, 136, 136);
   color: white;
 }
-.dark > a {
+
+.dark>a {
   color: white;
+}
+
+body.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.card.light {
+  background-color: #fff;
+  color: #575656;
+  border-color: #454444;
+}
+
+.card.dark {
+  background-color: rgb(136, 136, 136);
+  color: #fff;
+  border-color: #fcfbfb;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 999;
+}
+
+.notification.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.notification.light {
+  background-color: #1e90ff;
+  color: #ffffff;
+}
+
+.notification.dark {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+
+.navbar {
+  padding: 0 1rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+}
+
+.brand-d {
+  color: #e91e63;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: rgb(17, 17, 17);
+  text-decoration: none;
+}
+
+.navbar.dark .nav-links a {
+  color: #fff;
+}
+
+.navbar.dark .nav-links a:hover {
+  color: #e91e63;
+}
+
+.nav-links.dark {
+  background-color: black;
+}
+
+.nav-links.dark a {
+  color: rgb(250, 250, 250);
+}
+
+.nav-links a:hover {
+  color: #e91e63;
+}
+
+.theme-toggle {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar.light .theme-toggle {
+  color: #333;
+}
+
+.navbar.dark .theme-toggle {
+  color: rgb(255, 255, 255);
 }
